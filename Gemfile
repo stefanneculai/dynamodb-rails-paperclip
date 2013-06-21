@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Specify your gem's dependencies in dynamoid-paperclip.gemspec
-gem 'dynamoid'
-gem 'paperclip', '~> 3.0'
+gemspec
+
+gem 'dynamodb-rails', :git => 'git//github.com:stefanneculai/dynamodb-rails.git'
 

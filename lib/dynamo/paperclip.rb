@@ -1,28 +1,22 @@
 # encoding: utf-8
 
-require "dynamoid/paperclip/version"
+require "dynamo/paperclip/version"
 
 begin
   require 'paperclip'
 rescue LoadError
-  puts "Dynamoid::Paperclip requires that you install the Paperclip gem."
+  puts "Dynamo::Paperclip requires that you install the Paperclip gem."
   exit
 end
 
 begin
-  require 'dynamoid'
+  require 'dynamodb-rails'
 rescue LoadError
-  puts "Dynamoid::Paperclip requires that you install the Dynamoid gem."
+  puts "Dynamo::Paperclip requires that you install the dynamodb-rails gem."
   exit
 end
 
-##
-# The id of dynamoid is not integer, so correct the id_partition.
-Paperclip.interpolates :id_partition do |attachment, style|
-  attachment.instance.id.to_s.scan(/.{4}/).join("/")
-end
-
-module Dynamoid
+module Dynamo
   module Paperclip
 
     ##
@@ -34,11 +28,11 @@ module Dynamoid
     module ClassMethods
 
       ##
-      # Adds Dynamoid::Paperclip's "#has_dynamoid_attached_file" class method to the model
+      # Adds Dynamo::Paperclip's "#has_dynamo_attached_file" class method to the model
       # which includes Paperclip and Paperclip::Glue in to the model. Additionally
-      # it'll also add the required fields for Paperclip since DynamoDB is schemaless and doesn't
+      # it'll also add the required fields for Paperclip since DynamoDB is schema-less and doesn't
       # have migrations.
-      def has_dynamoid_attached_file(field, options = {})
+      def has_dynamo_attached_file(field, options = {})
 
         ##
         # Include Paperclip and Paperclip::Glue for compatibility
@@ -56,8 +50,8 @@ module Dynamoid
         # Define the necessary collection fields in Dynamoid for Paperclip
         field(:"#{field}_file_name")
         field(:"#{field}_content_type")
-        field(:"#{field}_file_size", :integer)
-        field(:"#{field}_updated_at", :datetime)
+        field(:"#{field}_file_size", :N)
+        field(:"#{field}_updated_at", :D)
       end
     end
 

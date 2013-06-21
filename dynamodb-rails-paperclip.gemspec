@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dynamoid/paperclip/version'
+require 'dynamo/paperclip/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dynamoid-paperclip"
-  spec.version       = Dynamoid::Paperclip::VERSION
+  spec.name          = "dynamodb-rails-paperclip"
+  spec.version       = Dynamo::Paperclip::VERSION
   spec.authors       = ["Stefan Neculai"]
   spec.email         = ["stefan.neculai@gmail.com"]
-  spec.description   = 'Dynamoid::Paperclip enables you to use Paperclip with the Dynamoid for DynamoDB.'
-  spec.summary       = 'Dynamoid::Paperclip enables you to use Paperclip with the Dynamoid for DynamoDB.'
-  spec.homepage      = "https://github.com/stefanneculai/dynamoid-paperclip"
+  spec.description   = 'Dynamoid::Paperclip enables you to use Paperclip with the DynamoDB Rails.'
+  spec.summary       = 'Dynamoid::Paperclip enables you to use Paperclip with the DynamoDB Rails.'
+  spec.homepage      = "https://github.com/stefanneculai/dynamodb-rails-paperclip"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -21,6 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
 
-  spec.add_dependency 'dynamoid'
+  spec.add_dependency 'rake'
   spec.add_dependency 'paperclip', '~> 3.0'
 end
